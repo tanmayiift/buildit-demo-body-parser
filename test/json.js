@@ -433,6 +433,22 @@ describe('bodyParser.json()', function () {
         .expect(403, '[entity.verify.failed] no arrays', done)
     })
 
+    it('should allow an async verify function', function (done) {
+      const server = createServer({
+        verify: async function (req, res, buf) {
+          await new Promise(function (resolve) { setImmediate(resolve) })
+
+          if (buf[0] === 0x5b) throw new Error('no arrays')
+        }
+      })
+
+      request(server)
+        .post('/')
+        .set('Content-Type', 'application/json')
+        .send('{"user":"tobi"}')
+        .expect(200, '{"user":"tobi"}', done)
+    })
+
     it('should allow custom codes', function (done) {
       const server = createServer({
         verify: function (req, res, buf) {

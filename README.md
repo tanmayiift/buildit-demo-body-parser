@@ -130,6 +130,9 @@ The `verify` option, if supplied, is called as `verify(req, res, buf, encoding)`
 where `buf` is a `Buffer` of the raw request body and `encoding` is the
 encoding of the request. The parsing can be aborted by throwing an error.
 
+`verify` may also be an `async` function (or return a promise); rejecting the
+returned promise aborts the request the same way throwing does.
+
 ### bodyParser.raw([options])
 
 Returns middleware that parses all bodies as a `Buffer` and only looks at
@@ -177,6 +180,9 @@ and the request is parsed if it returns a truthy value. Defaults to
 The `verify` option, if supplied, is called as `verify(req, res, buf, encoding)`,
 where `buf` is a `Buffer` of the raw request body and `encoding` is the
 encoding of the request. The parsing can be aborted by throwing an error.
+
+`verify` may also be an `async` function (or return a promise); rejecting the
+returned promise aborts the request the same way throwing does.
 
 ### bodyParser.text([options])
 
@@ -229,6 +235,9 @@ truthy value. Defaults to `text/plain`.
 The `verify` option, if supplied, is called as `verify(req, res, buf, encoding)`,
 where `buf` is a `Buffer` of the raw request body and `encoding` is the
 encoding of the request. The parsing can be aborted by throwing an error.
+
+`verify` may also be an `async` function (or return a promise); rejecting the
+returned promise aborts the request the same way throwing does.
 
 ### bodyParser.urlencoded([options])
 
@@ -293,6 +302,9 @@ to `application/x-www-form-urlencoded`.
 The `verify` option, if supplied, is called as `verify(req, res, buf, encoding)`,
 where `buf` is a `Buffer` of the raw request body and `encoding` is the
 encoding of the request. The parsing can be aborted by throwing an error.
+
+`verify` may also be an `async` function (or return a promise); rejecting the
+returned promise aborts the request the same way throwing does.
 
 ##### defaultCharset
 
